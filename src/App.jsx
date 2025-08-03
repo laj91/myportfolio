@@ -26,6 +26,5 @@ function App() {
         </Router>
     );
 }
-// Export the App component as the default export
 
 export default App;
