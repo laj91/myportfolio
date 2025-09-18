@@ -37,7 +37,7 @@ nav {
 }
 
 main {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 2rem auto;
   padding: 0 1rem;
 }
@@ -51,7 +51,7 @@ main {
 
 .projects__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1.5rem;
   margin-top: 1rem;
 }
@@ -63,9 +63,71 @@ main {
   box-shadow: 0 1px 4px rgba(0,0,0,0.03);
 }
 
-.project__card h3 {
-  margin-top: 0;
+    /* ... eksisterende CSS ... */
+
+    .project__card h3 {
+        margin-top: 0;
+    }
+
+/* NYE STYLES TIL SLIDESHOW */
+.image-slideshow {
+    position: relative;
+    overflow: hidden; /* Skjuler de billeder, der er uden for containeren */
+    border-radius: 6px;
 }
+
+
+.slideshow-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* NYT: En container for hvert slide */
+.slide {
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+    display: flex; /* Gør det nemt at centrere indhold */
+    justify-content: center;
+    align-items: center;
+}
+
+/* ÆNDRET: Gælder nu for både img og video */
+.slide-media {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+.slideshow-controls {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+    .slideshow-controls button {
+        background: #333;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .slideshow-controls button:hover {
+            background: #555;
+        }
+
 
 @media (max-width: 600px) {
   .projects__grid {

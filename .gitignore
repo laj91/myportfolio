@@ -1,0 +1,56 @@
+# Node / Vite
+node_modules/
+dist/
+.vite/
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Env files (keep examples)
+.env
+.env.*.local
+!.env.example
+
+# Editors/IDE
+.vscode/
+.idea/
+*.suo
+*.user
+*.userossc
+*.sln.docstates
+
+# Visual Studio artifacts (if any .NET projects exist)
+.vs/
+[Bb]in/
+[Oo]bj/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Videos (ignore everywhere)
+*.mp4
+*.m4v
+*.mov
+*.avi
+*.wmv
+*.mkv
+*.webm
+*.ogv
+*.ogm
+*.3gp
+*.3g2
+*.flv
+*.mts
+*.m2ts
+*.ts
+
+# Optional: ignore a specific videos folder
+myportfolio/public/videos/vrplayvideos
+
+myportfolio/public/pictures/
