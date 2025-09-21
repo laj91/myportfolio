@@ -1,6 +1,6 @@
 import React from "react";
 import ImageSlideshow from "./ImageSlideshow";
-// Tilføj flere billeder her hvis du har dem
+// Tilføj flere billeder her hvis du har dem 
 //const allImages = [
 //  "vrplayground/Inside view 2.png",
 //  "vrplayground/Panoramic view of house.png",
@@ -8,13 +8,23 @@ import ImageSlideshow from "./ImageSlideshow";
 //  "vrplayground/Panoramic view of house 2.png"
 //];
 
-const vrMedia = [
+const vrPlaygroundMedia = [
     { type: 'image', src: '/pictures/vrplayground/Inside view 2.png' },
-    { type: 'video', src: '/videos/vrplayvideos/2025-07-17 16-58-06.mkv'},
     { type: 'image', src: '/pictures/vrplayground/Panoramic view of house.png' },
     { type: 'image', src: '/pictures/vrplayground/Inside view.png' },
-    { type: 'image', src: '/pictures/vrplayground/Panoramic view of house 2.png' }
+    { type: 'image', src: '/pictures/vrplayground/Panoramic view of house 2.png' },
+    { type: 'video', src: '/videos/vrplayvideos/2025-07-17 16-58-06.mkv' }
 ];
+
+
+const vrRagdollShooterMedia = [
+    { type: 'image', src: '/pictures/vrRagdollShooter/BehindCrane.png' },
+    { type: 'image', src: '/pictures/vrRagdollShooter/BirdView.png' },
+    { type: 'image', src: '/pictures/vrRagdollShooter/CanonView.png' },
+    { type: 'image', src: '/pictures/vrRagdollShooter/DownView.png' },
+    { type: 'image', src: '/pictures/vrRagdollShooter/InsideCrane.png' },
+    { type: 'video', src: '/videos/vrplayvideos/2025-09-21 21-33-19.mkv' }
+]
 
 //function getImagesForFolder(folderName) {
 //  // Returnerer alle billeder der starter med folderName
@@ -27,22 +37,34 @@ const vrMedia = [
 
 const projects = [
   {
-    title: "Portfolio Website",
-    description: "Min personlige portefølje bygget med React.",
+    title: "VR Playground",
+    description: "Served as a place for learning the ins and outs of vr",
     github: "https://github.com/din-bruger/portfolio",
-    media: vrMedia, // Array af billedstier
+    media: vrPlaygroundMedia, // Array af billedstier
     video: null
   },
   {
-    title: "Todo App",
-    description: "En simpel todo-applikation med React og hooks.",
+    title: "VR Ragdoll Shooter",
+    description: "Just a silly idea i wanted to try out",
     github: "https://github.com/din-bruger/todo-app",
+    media: vrRagdollShooterMedia
   },
   {
-    title: "API Integration",
-    description: "Projekt med integration til eksterne REST API'er.",
+    title: "Mixed Reality with OpenAI",
+    description: "Just a small experiment made with Metas new passthrough API",
     github: "https://github.com/din-bruger/api-integration",
+  },
+  {
+    title: "Portfolio Website",
+    description: "This very website you're looking at, built with React.",
+    github: "https://github.com/din-bruger/api-integration"
+  },
+  {
+    title: "MemeBot",
+    description: "A blazor web app with a bot that generates comments on memes scraped from reddit.",
+    github: ""
   }
+
 ];
 
 function Projects() {
