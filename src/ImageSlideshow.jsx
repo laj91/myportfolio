@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Box, Button, HStack, Text } from "@chakra-ui/react";
 
 /**
  * A slideshow component that supports both images and videos,
@@ -6,86 +7,133 @@ import React, { useState, useEffect, useRef } from 'react';
  */
 const ImageSlideshow = ({ media, interval = 5000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false); // Pauses the auto-play when a video is active.
-  const videoRef = useRef(null); // Direct reference to the currently active video element.
+  const [isPaused, setIsPaused] = useState(false);
+  const videoRef = useRef(null);
 
-  // Handles the automatic slideshow timer.
+  // Handles the automatic slideshow timer
   useEffect(() => {
     if (isPaused || media.length <= 1) {
-      return; // Do nothing if paused or if there's only one item.
+      return;
     }
 
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % media.length);
     }, interval);
 
-    // Cleanup: clears the timer when the component unmounts or dependencies change.
     return () => clearInterval(timer);
   }, [currentIndex, isPaused, media.length, interval]);
 
-  // Event handlers to pause the slideshow when a video plays.
+  // Event handlers to pause the slideshow when a video plays
   const handleVideoPlay = () => setIsPaused(true);
   const handleVideoPauseOrEnd = () => setIsPaused(false);
 
-  // Handles navigation, ensuring videos are paused when switching slides.
-  const handleNavigation = (newIndex) => {
-    if (media[currentIndex].type === 'video' && videoRef.current) {
-      videoRef.current.pause();
-    }
-    setIsPaused(false); // Always resume auto-play on manual navigation.
-    setCurrentIndex(newIndex);
-  };
+  // Handles navigation, ensuring videos are paused when switching slides
+  //const handleNavigation = (newIndex) => {
+  //  if (media[currentIndex].type === 'video' && videoRef.current) {
+  //    videoRef.current.pause();
+  //  }
+  //  setIsPaused(false);
+  //  setCurrentIndex(newIndex);
+  //};
 
   if (!media || media.length === 0) {
-    return <div>No media to display.</div>;
+    return <Text>No media to display.</Text>;
   }
 
   return (
-    <div className="image-slideshow">
-      {/* The inner container moves to create the sliding effect. */}
-      <div className="slideshow-inner" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+    <Box
+      position="relative"
+      overflow="hidden"
+      borderRadius="slideshow"
+      aspectRatio="16 / 9"
+      maxH="260px"
+      bg="appBg"
+    >
+      {/* Slides container */}
+      <Box
+        display="flex"
+        h="100%"
+        transition="transform 0.5s ease-in-out"
+        transform={`translateX(-${currentIndex * 100}%)`}
+          >
+        {/* Map media items to slides using the item type from media */}
         {media.map((item, index) => (
-          <div className="slide" key={index}>
+           <Box 
+            key={index}
+            flex="0 0 100%"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
             {item.type === 'image' ? (
-              <img src={item.src} alt={`Slide ${index + 1}`} className="slide-media" />
+              <Box // Box for image slide 
+                as="img"
+                src={item.src}
+                alt={`Slide ${index + 1}`}
+                w="100%"
+                h="100%"
+                objectFit="cover"
+                display="block"
+              />
             ) : (
-              <video
-                // Assign the ref only to the currently visible video.
+              <Box // Box for video slide
+                as="video"
                 ref={index === currentIndex ? videoRef : null}
                 src={item.src}
                 controls
-                className="slide-media"
+                playsInline
+                w="100%"
+                h="100%"
+                objectFit="cover"
+                display="block"
                 onPlay={handleVideoPlay}
                 onPause={handleVideoPauseOrEnd}
                 onEnded={handleVideoPauseOrEnd}
               />
             )}
-          </div>
+          </Box>
         ))}
-      </div>
-      
-      <div className="slideshow-controls">
-        <button
-          onClick={() => {
-            const newIndex = (currentIndex - 1 + media.length) % media.length;
-            handleNavigation(newIndex);
-          }}
-        >
-          Prev
-        </button>
-        <span>
-          {currentIndex + 1} / {media.length}
-        </span>
-        <button
-          onClick={() => {
-            const newIndex = (currentIndex + 1) % media.length;
-            handleNavigation(newIndex);
-          }}
-        >
-          Next
-        </button>
-      </div>
-    </div>
+      </Box>
+      {/*Button section disabled as it is to cramped in new design*/ }
+      {/* Slideshow Controls */}
+      {/*<HStack*/}
+      {/*  position="absolute"*/}
+      {/*  bottom="10px"*/}
+      {/*  left="50%"*/}
+      {/*  transform="translateX(-50%)"*/}
+      {/*  bg="blackAlpha.700"*/}
+      {/*  color="onPrimary"*/}
+      {/*  px={3}*/}
+      {/*  py={2}*/}
+      {/*  borderRadius="md"*/}
+      {/*  zIndex={10}*/}
+      {/*  gap={2}*/}
+      {/*>*/}
+        {/*<Button*/}
+        {/*  size="sm"*/}
+        {/*  onClick={() => handleNavigation((currentIndex - 1 + media.length) % media.length)} // Jump to previous slide if not paused*/}
+        {/*  bg="primary"*/}
+        {/*  color="appBg"*/}
+        {/*  _hover={{ bg: "surface", color: "appBg" }}*/}
+        {/*  transition="default"*/}
+        {/*>*/}
+        {/*  Prev*/}
+        {/*</Button>*/}
+        {/*<Text fontSize="sm">*/}
+        {/*  {currentIndex + 1} / {media.length} */}{/* Show current slide number */}
+        {/*</Text>*/}
+        {/*<Button*/}
+        {/*  size="sm"*/}
+        {/*  onClick={() => handleNavigation((currentIndex + 1) % media.length)} // Jump to next slide if not paused*/}
+        {/*  bg="primary"*/}
+        {/*  color="appBg"*/}
+        {/*  _hover={{ bg: "surface", color: "appBg" }}*/}
+        {/*  transition="default"*/}
+        {/*>*/}
+        {/*  Next*/}
+        {/*</Button>*/}
+      {/*</HStack>*/}
+    </Box>
   );
 };
 

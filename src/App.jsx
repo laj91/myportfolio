@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link as RouterLink } from "react-router-dom";
 import { Box, Container, Flex, Heading, HStack, Link } from "@chakra-ui/react";
 import Home from "./Home";
 import Projects from "./Projects";
@@ -7,28 +6,157 @@ import Contact from "./Contact";
 import "./App.css";
 
 function App() {
+    const scrollToSection = (sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    };
+
     return (
-        <Router>
-            <Box as="header" borderBottomWidth="1px">
-                <Container maxW="container.lg">
-                    <Flex h={16} align="center" justify="space-between">
-                        <Heading size="md">Nicolaj</Heading>
-                        <HStack as="nav" spacing={4}>
-                            <Link as={RouterLink} to="/">Forside</Link>
-                            <Link as={RouterLink} to="/projekter">Projekter</Link>
-                            <Link as={RouterLink} to="/kontakt">Kontakt</Link>
+        <Box bg="appBg" minH="100vh"> 
+            {/* Sticky navigation */}
+            <Box
+                as="header"
+                position="sticky"
+                top={0}
+                zIndex={1000}
+                bg="appBg"
+                borderBottomWidth="2px"
+                borderColor="primary"
+                boxShadow="0 4px 12px rgba(0, 0, 0, 0.15)"
+                backdropFilter="blur(10px)"
+                transition="all 0.3s ease"
+            >
+                <Container maxW="container.xl">
+                    <Flex h={20} align="center" justify="space-between">
+                        <Heading 
+                            size="lg" 
+                            color="onPrimary"
+                            cursor="pointer"
+                            onClick={() => scrollToSection("forside")}
+                            transition="all 0.2s ease"
+                            _hover={{ 
+                                color: "primary",
+                                transform: "scale(1.05)"
+                            }}
+                        >
+                            Nicolaj<Box as="span" color="primary">.</Box>
+                        </Heading>
+
+                        <HStack as="nav" spacing={8}>
+                            <Link 
+                                onClick={() => scrollToSection("forside")} 
+                                cursor="pointer" 
+                                color="onPrimary"
+                                fontSize="md"
+                                fontWeight="medium"
+                                position="relative"
+                                transition="all 0.2s ease"
+                                _hover={{ 
+                                    color: "primary",
+                                    transform: "translateY(-2px)"
+                                }}
+                                _after={{
+                                    content: '""',
+                                    position: "absolute",
+                                    bottom: "-4px",
+                                    left: 0,
+                                    width: "0%",
+                                    height: "2px",
+                                    bg: "primary",
+                                    transition: "width 0.3s ease"
+                                }}
+                                sx={{
+                                    "&:hover::after": {
+                                        width: "100%"
+                                    }
+                                }}
+                            >
+                                Forside
+                            </Link>
+                            <Link 
+                                onClick={() => scrollToSection("projekter")} 
+                                cursor="pointer" 
+                                color="onPrimary"
+                                fontSize="md"
+                                fontWeight="medium"
+                                position="relative"
+                                transition="all 0.2s ease"
+                                _hover={{ 
+                                    color: "primary",
+                                    transform: "translateY(-2px)"
+                                }}
+                                _after={{
+                                    content: '""',
+                                    position: "absolute",
+                                    bottom: "-4px",
+                                    left: 0,
+                                    width: "0%",
+                                    height: "2px",
+                                    bg: "primary",
+                                    transition: "width 0.3s ease"
+                                }}
+                                sx={{
+                                    "&:hover::after": {
+                                        width: "100%"
+                                    }
+                                }}
+                            >
+                                Projekter
+                            </Link>
+                            <Link 
+                                onClick={() => scrollToSection("kontakt")} 
+                                cursor="pointer" 
+                                color="onPrimary"
+                                fontSize="md"
+                                fontWeight="medium"
+                                position="relative"
+                                transition="all 0.2s ease"
+                                _hover={{ 
+                                    color: "primary",
+                                    transform: "translateY(-2px)"
+                                }}
+                                _after={{
+                                    content: '""',
+                                    position: "absolute",
+                                    bottom: "-4px",
+                                    left: 0,
+                                    width: "0%",
+                                    height: "2px",
+                                    bg: "primary",
+                                    transition: "width 0.3s ease"
+                                }}
+                                sx={{
+                                    "&:hover::after": {
+                                        width: "100%"
+                                    }
+                                }}
+                            >
+                                Kontakt
+                            </Link>
                         </HStack>
                     </Flex>
                 </Container>
             </Box>
-            <Container as="main" maxW="container.lg" py={8}>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/projekter" element={<Projects />} />
-                    <Route path="/kontakt" element={<Contact />} />
-                </Routes>
-            </Container>
-        </Router>
+            
+            {/* Sektioner */}
+            <Box id="forside" as="section" bg="appBg">  
+                <Home scrollToSection={scrollToSection} />  {/* ? TILFØJET prop */}
+            </Box>
+
+            <Box id="projekter" as="section" bg="appBg"> 
+                <Container as="main" maxW="container.lg" py={8}>
+                    <Projects />
+                </Container>
+            </Box>
+
+            <Box id="kontakt" as="section" bg="appBg">  
+                <Container as="main" maxW="container.lg" py={8}>
+                    <Contact />
+                </Container>
+            </Box>
+        </Box>
     );
 }
 
