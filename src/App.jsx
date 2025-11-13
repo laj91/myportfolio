@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Container, Flex, Heading, HStack, Link } from "@chakra-ui/react";
+import { PiBracketsCurlyBold } from "react-icons/pi";
 import Home from "./Home";
 import Projects from "./Projects";
 import Contact from "./Contact";
@@ -41,7 +42,12 @@ function App() {
                                 transform: "scale(1.05)"
                             }}
                         >
-                            Nicolaj<Box as="span" color="primary">.</Box>
+                            <HStack spacing={2}>  {/* Use HStack for horizontal layout */}
+                                <PiBracketsCurlyBold />
+                                <Box as="span">
+                                    Nicolaj<Box as="span" color="primary">.</Box>
+                                </Box>
+                            </HStack>
                         </Heading>
 
                         <HStack as="nav" spacing={8}>
@@ -73,7 +79,7 @@ function App() {
                                     }
                                 }}
                             >
-                                Forside
+                                Home
                             </Link>
                             <Link 
                                 onClick={() => scrollToSection("projekter")} 
@@ -103,7 +109,7 @@ function App() {
                                     }
                                 }}
                             >
-                                Projekter
+                                Projects
                             </Link>
                             <Link 
                                 onClick={() => scrollToSection("kontakt")} 
@@ -133,7 +139,7 @@ function App() {
                                     }
                                 }}
                             >
-                                Kontakt
+                                Contact
                             </Link>
                         </HStack>
                     </Flex>
@@ -142,7 +148,7 @@ function App() {
             
             {/* Sektioner */}
             <Box id="forside" as="section" bg="appBg">  
-                <Home scrollToSection={scrollToSection} />  {/* ? TILFØJET prop */}
+                <Home scrollToSection={scrollToSection} />  {/* prop */}
             </Box>
 
             <Box id="projekter" as="section" bg="appBg"> 

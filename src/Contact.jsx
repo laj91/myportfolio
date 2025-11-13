@@ -27,14 +27,14 @@ export default function Contact() {
               mb={4}
               color="onPrimary"
             >
-              Lad os komme i kontakt
+             Let's Get in Touch
             </Heading>
             <Text
               fontSize="lg"
               color="onPrimary"
               opacity={0.8}
             >
-              Jeg er altid åben for nye muligheder og samarbejder
+                          I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out!
             </Text>
           </Box>
 
@@ -82,7 +82,7 @@ export default function Contact() {
                 color="primary"
                 wordBreak="break-word"
               >
-                din.email@domain.com
+                email@domain.com
               </Text>
             </Box>
 
@@ -124,7 +124,7 @@ export default function Contact() {
                 fontSize="sm"
                 color="primary"
               >
-                Se mine projekter
+                See my projects
               </Text>
             </Box>
 
@@ -166,42 +166,42 @@ export default function Contact() {
                 fontSize="sm"
                 color="primary"
               >
-                Forbind med mig
+               Connect with me
               </Text>
             </Box>
           </SimpleGrid>
 
           {/* Alternative: Simple Links Section */}
-          <Box
-            textAlign="center"
-            pt={8}
-            borderTop="1px"
-            borderColor="primary"
-            opacity={0.6}
-          >
-            <Text fontSize="sm" color="onPrimary">
-              Eller find mig på:{" "}
-              <Link
-                href="https://github.com/din-bruger"
-                isExternal
-                color="primary"
-                fontWeight="semibold"
-                _hover={{ textDecoration: "underline" }}
-              >
-                GitHub
-              </Link>
-              {" • "}
-              <Link
-                href="https://linkedin.com/in/din-linkedin"
-                isExternal
-                color="primary"
-                fontWeight="semibold"
-                _hover={{ textDecoration: "underline" }}
-              >
-                LinkedIn
-              </Link>
-            </Text>
-          </Box>
+          {/*<Box*/}
+          {/*  textAlign="center"*/}
+          {/*  pt={8}*/}
+          {/*  borderTop="1px"*/}
+          {/*  borderColor="primary"*/}
+          {/*  opacity={0.6}*/}
+          {/*>*/}
+          {/*  <Text fontSize="sm" color="onPrimary">*/}
+          {/*    Eller find mig på:{" "}*/}
+          {/*    <Link*/}
+          {/*      href="https://github.com/din-bruger"*/}
+          {/*      isExternal*/}
+          {/*      color="primary"*/}
+          {/*      fontWeight="semibold"*/}
+          {/*      _hover={{ textDecoration: "underline" }}*/}
+          {/*    >*/}
+          {/*      GitHub*/}
+          {/*    </Link>*/}
+          {/*    {" • "}*/}
+          {/*    <Link*/}
+          {/*      href="https://linkedin.com/in/din-linkedin"*/}
+          {/*      isExternal*/}
+          {/*      color="primary"*/}
+          {/*      fontWeight="semibold"*/}
+          {/*      _hover={{ textDecoration: "underline" }}*/}
+          {/*    >*/}
+          {/*      LinkedIn*/}
+          {/*    </Link>*/}
+          {/*  </Text>*/}
+          {/*</Box>*/}
         </VStack>
       </Container>
     </Box>
